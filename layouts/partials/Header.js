@@ -17,7 +17,7 @@ const Header = () => {
 
   // logo source
   const { logo } = config.site;
-  const { enable, label, link } = config.nav_button;
+  const navs = config.nav_button;
 
   return (
     <header className="header sticky top-0 backdrop-blur-md bg-white/30 inset-x-0 backdrop-saturate-150 bg-background/70 z-20">
@@ -93,26 +93,29 @@ const Header = () => {
                 )}
               </React.Fragment>
             ))}
-            {enable && (
-              <li className="md:hidden">
-                <Link
-                  className="btn btn-primary z-0 py-[14px]"
-                  href={link}
-                  rel=""
-                >
-                  {label}
-                </Link>
-              </li>
+            {navs.map(({ enable, label, link }, index) =>
+              enable && (
+                <li key={index} className="mt-2 first:mt-0 md:hidden">
+                  <Link
+                    className={"btn btn-primary z-0 py-[14px]"}
+                    href={link}
+                    rel=""
+                  >
+                    {label}
+                  </Link>
+                </li>
+              )
+
             )}
           </ul>
         </div>
-        {enable && (
-          <div className="d-flex order-1 ml-auto hidden min-w-[200px] items-center justify-end md:ml-0 md:flex md:order-2">
-            <Link className="btn btn-primary z-0 py-[14px]" href={link} rel="">
+        <div className="d-flex order-1 ml-auto hidden min-w-[200px] items-center justify-end md:ml-0 md:flex md:order-2">
+          {navs.map(({ enable, label, link, className }, index) =>
+            enable && <Link key={index} className={`ml-1 first:ml-0 btn btn-primary z-0 py-[14px] ${className ?? ""}`} href={link} rel="">
               {label}
             </Link>
-          </div>
-        )}
+          )}
+        </div>
       </nav>
     </header>
   );

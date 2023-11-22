@@ -15,11 +15,19 @@
     "blog_folder": "blogs"
   },
 
-  "nav_button": {
-    "enable": true,
-    "label": "Login",
-    "link": "/login"
-  },
+  "nav_button": [
+    {
+      "enable": true,
+      "label": "Login",
+      "link": "/login"
+    },
+    {
+      "enable": true,
+      "label": "Register",
+      "link": "/register",
+      "className": "btn-outline-primary"
+    }
+  ],
 
   "params": {
     "contact_form_action": "",
